@@ -1,10 +1,8 @@
 name: Semantic Release
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
 jobs:
   release:
     runs-on: ubuntu-latest
