@@ -1,0 +1,21 @@
+name: Deploy to Development Environment
+
+on:
+  pull_request:
+    branches:
+      - development
+    types: [closed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel Development Environment
+        run: vercel --yes --token=${{ secrets.VERCEL_TOKEN }}
