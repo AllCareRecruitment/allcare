@@ -1,0 +1,161 @@
+CREATE TABLE Role (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(500),
+    active BOOLEAN NOT NULL
+);
+
+CREATE TABLE "User" (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phoneNumber VARCHAR(10),
+    active BOOLEAN NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    roleId INT,
+    FOREIGN KEY (roleId) REFERENCES Role(id)
+);
+
+CREATE TABLE Address (
+    id SERIAL PRIMARY KEY,
+    streetNo VARCHAR(50),
+    suite VARCHAR(50),
+    suburb VARCHAR(255),
+    province VARCHAR(255),
+    postalCode VARCHAR(20),
+    country VARCHAR(255),
+    isPrimary BOOLEAN NOT NULL
+);
+
+CREATE TABLE Employer (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    contact VARCHAR(20),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    companyName VARCHAR(255),
+    companyContactNo VARCHAR(20),
+    companyEmail VARCHAR(255),
+    industry VARCHAR(255),
+    companySize VARCHAR(50),
+    website VARCHAR(255),
+    userId INT NOT NULL,
+    addressId INT UNIQUE NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    active BOOLEAN NOT NULL,
+    FOREIGN KEY (userId) REFERENCES "User"(id),
+    FOREIGN KEY (addressId) REFERENCES Address(id)
+);
+
+CREATE TABLE Applicant (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    contact VARCHAR(20),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    dateOfBirth DATE,
+    nationality VARCHAR(255),
+    highestLevelOfEducation VARCHAR(255),
+    resumeUrl VARCHAR(500),
+    linkedInUrl VARCHAR(500),
+    userId INT NOT NULL,
+    addressId INT UNIQUE NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    active BOOLEAN NOT NULL,
+    FOREIGN KEY (userId) REFERENCES "User"(id),
+    FOREIGN KEY (addressId) REFERENCES Address(id)
+);
+
+CREATE TABLE Education (
+    id SERIAL PRIMARY KEY,
+    applicantId INT NOT NULL,
+    institution VARCHAR(255) NOT NULL,
+    degree VARCHAR(255),
+    fieldOfStudy VARCHAR(255),
+    startDate DATE,
+    endDate DATE,
+    FOREIGN KEY (applicantId) REFERENCES Applicant(id)
+);
+
+CREATE TABLE Experience (
+    id SERIAL PRIMARY KEY,
+    applicantId INT NOT NULL,
+    companyName VARCHAR(255) NOT NULL,
+    jobTitle VARCHAR(255) NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE,
+    responsibilities TEXT,
+    FOREIGN KEY (applicantId) REFERENCES Applicant(id)
+);
+
+CREATE TABLE Skills (
+    id SERIAL PRIMARY KEY,
+    applicantId INT NOT NULL,
+    skillName VARCHAR(255) NOT NULL,
+    proficiencyLevel VARCHAR(50),
+    FOREIGN KEY (applicantId) REFERENCES Applicant(id)
+);
+
+CREATE TABLE Languages (
+    id SERIAL PRIMARY KEY,
+    applicantId INT NOT NULL,
+    language VARCHAR(255) NOT NULL,
+    proficiencyLevel VARCHAR(50),
+    FOREIGN KEY (applicantId) REFERENCES Applicant(id)
+);
+
+CREATE TABLE ApplicantReferences (
+    id SERIAL PRIMARY KEY,
+    applicantId INT NOT NULL,
+    referenceName VARCHAR(255) NOT NULL,
+    contact VARCHAR(20),
+    email VARCHAR(255),
+    relationship VARCHAR(255),
+    FOREIGN KEY (applicantId) REFERENCES Applicant(id)
+);
+
+CREATE TABLE SubscriptionPlan (
+    id SERIAL PRIMARY KEY,
+    planName VARCHAR(255) NOT NULL,
+    description VARCHAR(500),
+    price DECIMAL(10, 2) NOT NULL,
+    durationInMonths INT NOT NULL,
+    active BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE Subscription (
+    id SERIAL PRIMARY KEY,
+    userId INT NOT NULL,
+    planId INT NOT NULL,
+    startDate TIMESTAMP NOT NULL,
+    endDate TIMESTAMP NOT NULL,
+    autoRenew BOOLEAN NOT NULL DEFAULT TRUE,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (userId) REFERENCES "User"(id),
+    FOREIGN KEY (planId) REFERENCES SubscriptionPlan(id)
+);
+
+CREATE TABLE BillingCycle (
+    id SERIAL PRIMARY KEY,
+    subscriptionId INT NOT NULL,
+    startDate TIMESTAMP NOT NULL,
+    endDate TIMESTAMP NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL, -- e.g., Pending, Paid, Failed
+    FOREIGN KEY (subscriptionId) REFERENCES Subscription(id)
+);
+
+CREATE TABLE Payment (
+    id SERIAL PRIMARY KEY,
+    billingCycleId INT NOT NULL,
+    paymentDate TIMESTAMP NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    paymentMethod VARCHAR(50) NOT NULL, -- e.g., Credit Card, PayPal
+    transactionId VARCHAR(255),
+    status VARCHAR(50) NOT NULL, -- e.g., Success, Failed
+    FOREIGN KEY (billingCycleId) REFERENCES BillingCycle(id)
+);
