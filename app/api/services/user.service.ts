@@ -1,11 +1,11 @@
 import { prisma } from '@/app/api/lib/prisma'
 
 export async function getAllUsers() {
-    return prisma.users.findMany()
+    return prisma.user.findMany()
 }
 
 export async function getUserById(id: string) {
-    return prisma.users.findFirst(
+    return prisma.user.findFirst(
         {
             where: {
                 id: parseInt(id),
