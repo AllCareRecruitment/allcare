@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "651972d7-2a46-4309-a460-caabf998e26b",
+		"name": "AllCare-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17940457"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "dean",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dean",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 Feb 2025 18:49:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Vercel"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Vary",
+									"value": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+								},
+								{
+									"key": "X-Matched-Path",
+									"value": "/api/users"
+								},
+								{
+									"key": "X-Vercel-Cache",
+									"value": "BYPASS"
+								},
+								{
+									"key": "X-Vercel-Id",
+									"value": "cpt1::iad1::mvr8z-1739645349326-412bd8758d90"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 1,\n            \"name\": \"Dean\",\n            \"surname\": \"Schutte\",\n            \"email\": \"deanieschutte@gmail.com\",\n            \"phoneNumber\": \"0794572161\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-02-15T03:39:04.819Z\",\n            \"updatedAt\": \"2025-02-15T03:39:04.819Z\",\n            \"roleId\": 1\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Get user by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "dean",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dean",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"streetNo\": \"\",\r\n    \"suite\": \"\",\r\n    \"suburb\": \"\",\r\n    \"city\": \"\",\r\n    \"province\": \"\",\r\n    \"postalCode\": \"\",\r\n    \"country\": \"\",\r\n    \"isPrimary\": false,\r\n    \"additionalLocations\": [\r\n        {\r\n            \"streetNo\": \"\",\r\n            \"suite\": \"\",\r\n            \"suburb\": \"\",\r\n            \"city\": \"\",\r\n            \"province\": \"\",\r\n            \"postalCode\": \"\",\r\n            \"country\": \"\",\r\n            \"isPrimary\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"streetNo\": \"\",\r\n    \"suite\": \"\",\r\n    \"suburb\": \"\",\r\n    \"city\": \"\",\r\n    \"province\": \"\",\r\n    \"postalCode\": \"\",\r\n    \"country\": \"\",\r\n    \"isPrimary\": false,\r\n    \"additionalLocations\": [\r\n        {\r\n            \"streetNo\": \"\",\r\n            \"suite\": \"\",\r\n            \"suburb\": \"\",\r\n            \"city\": \"\",\r\n            \"province\": \"\",\r\n            \"postalCode\": \"\",\r\n            \"country\": \"\",\r\n            \"isPrimary\": false\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/user/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 Feb 2025 18:48:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Vercel"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Vary",
+									"value": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+								},
+								{
+									"key": "X-Matched-Path",
+									"value": "/api/user/[id]"
+								},
+								{
+									"key": "X-Vercel-Cache",
+									"value": "BYPASS"
+								},
+								{
+									"key": "X-Vercel-Id",
+									"value": "cpt1::iad1::vt7wf-1739645313681-11a5c9314df2"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Dean\",\n        \"surname\": \"Schutte\",\n        \"email\": \"deanieschutte@gmail.com\",\n        \"roleId\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
