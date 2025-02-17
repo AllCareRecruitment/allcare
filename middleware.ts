@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { authMiddleware } from '@/middleware/auth.middleware'
-import { loggingMiddleware } from '@/middleware/logging.middleware'
+import { authMiddleware } from '@/app/api/middleware/auth.middleware'
+import { loggingMiddleware } from '@/app/api/middleware/logging.middleware'
 
 export type Middleware = (request: NextRequest) => NextResponse | void | Promise<NextResponse | void>;
 
