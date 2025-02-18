@@ -7,14 +7,178 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id          Int       @id @default(autoincrement())
-  name        String    @db.VarChar(100)
-  surname     String    @db.VarChar(100)
-  email       String    @unique @db.VarChar(255)
-  phoneNumber String?   @db.VarChar(15)
-  isActive    Boolean?  @default(true)
-  createdAt   DateTime? @default(now()) @db.Timestamp(6)
-  updatedAt   DateTime? @default(now()) @db.Timestamp(6)
-  roleId      Int
+model Address {
+  id         Int        @id @default(autoincrement())
+  streetNo   String?    @db.VarChar(50)
+  suite      String?    @db.VarChar(50)
+  suburb     String?    @db.VarChar(255)
+  province   String?    @db.VarChar(255)
+  postalCode String?    @db.VarChar(20)
+  country    String?    @db.VarChar(255)
+  isPrimary  Boolean
+  Applicant  Applicant?
+  Employer   Employer?
+}
+
+model Applicant {
+  id                      Int                   @id @default(autoincrement())
+  name                    String                @db.VarChar(255)
+  surname                 String                @db.VarChar(255)
+  contact                 String?               @db.VarChar(20)
+  email                   String                @unique @db.VarChar(255)
+  dateOfBirth             DateTime?             @db.Date
+  nationality             String?               @db.VarChar(255)
+  highestLevelOfEducation String?               @db.VarChar(255)
+  resumeUrl               String?               @db.VarChar(500)
+  linkedInUrl             String?               @db.VarChar(500)
+  userId                  Int
+  addressId               Int                   @unique
+  createdAt               DateTime?             @default(now()) @db.Timestamp(6)
+  updatedAt               DateTime?             @default(now()) @db.Timestamp(6)
+  active                  Boolean
+  Address                 Address               @relation(fields: [addressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User                    User                  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ApplicantReferences     ApplicantReferences[]
+  Education               Education[]
+  Experience              Experience[]
+  Languages               Languages[]
+  Skills                  Skills[]
+}
+
+model ApplicantReferences {
+  id            Int       @id @default(autoincrement())
+  applicantId   Int
+  referenceName String    @db.VarChar(255)
+  contact       String?   @db.VarChar(20)
+  email         String?   @db.VarChar(255)
+  relationship  String?   @db.VarChar(255)
+  Applicant     Applicant @relation(fields: [applicantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model BillingCycle {
+  id             Int          @id @default(autoincrement())
+  subscriptionId Int
+  startDate      DateTime     @db.Timestamp(6)
+  endDate        DateTime     @db.Timestamp(6)
+  amount         Decimal      @db.Decimal(10, 2)
+  status         String       @db.VarChar(50)
+  Subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Payment        Payment[]
+}
+
+model Education {
+  id           Int       @id @default(autoincrement())
+  applicantId  Int
+  institution  String    @db.VarChar(255)
+  degree       String?   @db.VarChar(255)
+  fieldOfStudy String?   @db.VarChar(255)
+  startDate    DateTime? @db.Date
+  endDate      DateTime? @db.Date
+  Applicant    Applicant @relation(fields: [applicantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Employer {
+  id               Int       @id @default(autoincrement())
+  name             String    @db.VarChar(255)
+  surname          String    @db.VarChar(255)
+  contact          String?   @db.VarChar(20)
+  email            String    @unique @db.VarChar(255)
+  companyName      String?   @db.VarChar(255)
+  companyContactNo String?   @db.VarChar(20)
+  companyEmail     String?   @db.VarChar(255)
+  industry         String?   @db.VarChar(255)
+  companySize      String?   @db.VarChar(50)
+  website          String?   @db.VarChar(255)
+  userId           Int
+  addressId        Int       @unique
+  createdAt        DateTime? @default(now()) @db.Timestamp(6)
+  updatedAt        DateTime? @default(now()) @db.Timestamp(6)
+  active           Boolean
+  Address          Address   @relation(fields: [addressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User             User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Experience {
+  id               Int       @id @default(autoincrement())
+  applicantId      Int
+  companyName      String    @db.VarChar(255)
+  jobTitle         String    @db.VarChar(255)
+  startDate        DateTime  @db.Date
+  endDate          DateTime? @db.Date
+  responsibilities String?
+  Applicant        Applicant @relation(fields: [applicantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Languages {
+  id               Int       @id @default(autoincrement())
+  applicantId      Int
+  language         String    @db.VarChar(255)
+  proficiencyLevel String?   @db.VarChar(50)
+  Applicant        Applicant @relation(fields: [applicantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Payment {
+  id             Int          @id @default(autoincrement())
+  billingCycleId Int
+  paymentDate    DateTime     @db.Timestamp(6)
+  amount         Decimal      @db.Decimal(10, 2)
+  paymentMethod  String       @db.VarChar(50)
+  transactionId  String?      @db.VarChar(255)
+  status         String       @db.VarChar(50)
+  BillingCycle   BillingCycle @relation(fields: [billingCycleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.VarChar(500)
+  active      Boolean
+  User        User[]
+}
+
+model Skills {
+  id               Int       @id @default(autoincrement())
+  applicantId      Int
+  skillName        String    @db.VarChar(255)
+  proficiencyLevel String?   @db.VarChar(50)
+  Applicant        Applicant @relation(fields: [applicantId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Subscription {
+  id               Int              @id @default(autoincrement())
+  userId           Int
+  planId           Int
+  startDate        DateTime         @db.Timestamp(6)
+  endDate          DateTime         @db.Timestamp(6)
+  autoRenew        Boolean          @default(true)
+  active           Boolean          @default(true)
+  BillingCycle     BillingCycle[]
+  SubscriptionPlan SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User             User             @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model SubscriptionPlan {
+  id               Int            @id @default(autoincrement())
+  planName         String         @db.VarChar(255)
+  description      String?        @db.VarChar(500)
+  price            Decimal        @db.Decimal(10, 2)
+  durationInMonths Int
+  active           Boolean        @default(true)
+  Subscription     Subscription[]
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  surname      String         @db.VarChar(255)
+  email        String         @unique @db.VarChar(255)
+  phoneNumber  String?        @db.VarChar(10)
+  active       Boolean
+  createdAt    DateTime?      @default(now()) @db.Timestamp(6)
+  updatedAt    DateTime?      @default(now()) @db.Timestamp(6)
+  roleId       Int?
+  Applicant    Applicant[]
+  Employer     Employer[]
+  Subscription Subscription[]
+  Role         Role?          @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
