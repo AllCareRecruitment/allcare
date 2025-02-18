@@ -1,5 +1,6 @@
-
 import React from 'react'
+import { LoadingProvider } from './(ui)/services/context/LoadingContext'
+import Spinner from './(ui)/components/spinner'
 
 export default function RootLayout({
     children,
@@ -9,8 +10,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <p>hello</p>
-                {children}
+                <LoadingProvider>
+                    <Spinner />
+                    <p>hello</p>
+                    {children}
+                </LoadingProvider>
             </body>
         </html>
     )
