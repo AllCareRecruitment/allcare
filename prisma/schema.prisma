@@ -15,7 +15,6 @@ model Address {
   province   String?    @db.VarChar(255)
   postalCode String?    @db.VarChar(20)
   country    String?    @db.VarChar(255)
-  isPrimary  Boolean
   Applicant  Applicant?
   Employer   Employer?
 }
@@ -35,7 +34,7 @@ model Applicant {
   addressId               Int                   @unique
   createdAt               DateTime?             @default(now()) @db.Timestamp(6)
   updatedAt               DateTime?             @default(now()) @db.Timestamp(6)
-  active                  Boolean
+  active                  Boolean               @default(true)
   Address                 Address               @relation(fields: [addressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   User                    User                  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   ApplicantReferences     ApplicantReferences[]
@@ -93,7 +92,7 @@ model Employer {
   addressId        Int       @unique
   createdAt        DateTime? @default(now()) @db.Timestamp(6)
   updatedAt        DateTime? @default(now()) @db.Timestamp(6)
-  active           Boolean
+  active           Boolean   @default(true)
   Address          Address   @relation(fields: [addressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   User             User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
@@ -132,7 +131,7 @@ model Role {
   id          Int     @id @default(autoincrement())
   name        String  @db.VarChar(255)
   description String? @db.VarChar(500)
-  active      Boolean
+  active      Boolean @default(true)
   User        User[]
 }
 
@@ -173,7 +172,7 @@ model User {
   surname      String         @db.VarChar(255)
   email        String         @unique @db.VarChar(255)
   phoneNumber  String?        @db.VarChar(10)
-  active       Boolean
+  active       Boolean        @default(true)
   createdAt    DateTime?      @default(now()) @db.Timestamp(6)
   updatedAt    DateTime?      @default(now()) @db.Timestamp(6)
   roleId       Int?
