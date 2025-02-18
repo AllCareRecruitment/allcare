@@ -1,0 +1,27 @@
+name: ESLint and Build Check
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint with Next.js
+        run: npm run lint
+
+      - name: Build Next.js Project
+        run: npm run build
