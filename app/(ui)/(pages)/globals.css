@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Color Variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --color-jobseekers-bg: #6B7165;
+  --color-employers-bg: #D7D3AC;
+  --color-highlight: #D7D3AC;
+  --color-highlight-dark: #6B7165;
+  --color-button-bg: #FFC7C9;
+  --color-button-hover: #F5BABA;
+  --color-button-text: #6B7165;
+  --color-text-light: #FFFFFF;
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -14,8 +25,35 @@
   }
 }
 
+/* Apply Global Styles */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utility Classes */
+.bg-jobseekers {
+  background-color: var(--color-jobseekers-bg);
+}
+.bg-employers {
+  background-color: var(--color-employers-bg);
+}
+.text-highlight {
+  color: var(--color-highlight);
+}
+.text-highlight-dark {
+  color: var(--color-highlight-dark);
+}
+.bg-button {
+  background-color: var(--color-button-bg);
+}
+.bg-button-hover:hover {
+  background-color: var(--color-button-hover);
+}
+.text-button {
+  color: var(--color-button-text);
+}
+.text-light {
+  color: var(--color-text-light);
 }
