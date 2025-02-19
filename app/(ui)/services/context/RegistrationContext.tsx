@@ -1,18 +1,19 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react'
+import { RegistrationType } from '../../models/RegistrationType'
 
-type RegistrationType = 'Applicant' | 'Employer' | null
+type RegistrationTypeState = RegistrationType | null
 
 interface RegistrationContextType {
-    registrationType: RegistrationType
-    setRegistrationType: Dispatch<SetStateAction<RegistrationType>>
+    registrationType: RegistrationTypeState
+    setRegistrationType: Dispatch<SetStateAction<RegistrationTypeState>>
 }
 
 const RegistrationContext = createContext<RegistrationContextType | undefined>(undefined)
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
-    const [registrationType, setRegistrationType] = useState<RegistrationType>(null)
+    const [registrationType, setRegistrationType] = useState<RegistrationTypeState>(null)
 
     return (
         <RegistrationContext.Provider value={{ registrationType, setRegistrationType }}>

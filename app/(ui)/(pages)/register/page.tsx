@@ -2,12 +2,13 @@
 
 import { useRouter } from 'next/navigation'
 import { useRegistration } from '../../services/context/RegistrationContext'
+import { RegistrationType } from '../../models/RegistrationType'
 
 const RegistrationSelection = () => {
     const { setRegistrationType } = useRegistration()
     const router = useRouter()
 
-    const handleButtonClick = (type: 'Applicant' | 'Employer') => {
+    const handleButtonClick = (type: RegistrationType) => {
         setRegistrationType(type)
         router.push('/register/create-profile')
     }
@@ -22,7 +23,7 @@ const RegistrationSelection = () => {
                 <button className="mt-6 bg-button text-button
                     font-semibold py-2 px-6 rounded-md
                     bg-button-hover transition flex items-center"
-                onClick={() => handleButtonClick('Applicant')}
+                onClick={() => handleButtonClick(RegistrationType.Applicant)}
                 >
                     GET STARTED <span className="ml-2">→</span>
                 </button>
@@ -35,7 +36,7 @@ const RegistrationSelection = () => {
                 <h1 className="text-5xl font-bold text-highlight-dark mt-2">TEAM</h1>
                 <button className="mt-6 bg-button text-button font-semibold py-2 px-6
                     rounded-md bg-button-hover transition flex items-center"
-                onClick={() => handleButtonClick('Employer')}
+                onClick={() => handleButtonClick(RegistrationType.Employer)}
                 >
                     GET STARTED <span className="ml-2">→</span>
                 </button>

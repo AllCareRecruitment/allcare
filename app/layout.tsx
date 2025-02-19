@@ -13,7 +13,6 @@ export default function RootLayout({
                 <LoadingProvider>
                     <RegistrationProvider>
                         <Spinner />
-                        <p>hello</p>
                         {children}
                     </RegistrationProvider>
                 </LoadingProvider>
