@@ -158,3 +158,26 @@ CREATE TABLE "Payment" (
     "status" VARCHAR(50) NOT NULL,
     FOREIGN KEY ("billingCycleId") REFERENCES "BillingCycle"("id")
 );
+
+CREATE TABLE "AuthTokens" (
+    "id" SERIAL PRIMARY KEY,
+    "userId" INT NOT NULL,
+    "token" TEXT NOT NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
+);
+
+
+CREATE FUNCTION update_updatedAt_column() 
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW."updatedAt" = CURRENT_TIMESTAMP;
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER set_updatedAt
+BEFORE UPDATE ON "AuthTokens"
+FOR EACH ROW
+EXECUTE FUNCTION update_updatedAt_column();

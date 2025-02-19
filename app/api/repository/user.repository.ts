@@ -21,3 +21,32 @@ export async function userGet(id: string) {
     )
 }
 
+
+export async function userGetByEmail(email: string) {
+    return prisma.user.findUnique({
+        where: { email },
+    });
+}
+
+
+export async function createUser(userData: { name: string, surname: string, email: string, phoneNumber?: string, active: boolean, roleId?: number | null }) {
+    return prisma.user.create({
+        data: {
+            ...userData,
+            roleId: userData.roleId ?? null,  //create enum for em
+        },
+    });
+}
+
+//dont update it specify
+export async function updateUser(id: string, userData: { name?: string, surname?: string, email?: string, phoneNumber?: string, active?: boolean, roleId?: number | null }) {
+    return prisma.user.update({
+        where: {
+            id: parseInt(id),
+        },
+        data: {
+            ...userData,
+            roleId: userData.roleId ?? null, // Default to null 
+        },
+    });
+}
