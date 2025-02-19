@@ -1,10 +1,10 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, ReactNode, SetStateAction, Dispatch } from 'react'
 
 interface LoadingContextType {
     isLoading: boolean
-    setLoading: (state: boolean) => void
+    setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined)

@@ -1,12 +1,12 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react'
 
 type RegistrationType = 'Applicant' | 'Employer' | null
 
 interface RegistrationContextType {
-    registrationType: RegistrationType;
-    setRegistrationType: (type: RegistrationType) => void
+    registrationType: RegistrationType
+    setRegistrationType: Dispatch<SetStateAction<RegistrationType>>
 }
 
 const RegistrationContext = createContext<RegistrationContextType | undefined>(undefined)
