@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useRegistration } from '../../services/context/RegistrationContext'
+import { useRegistration } from '../../context/RegistrationContext'
 import { RegistrationType } from '../../models/RegistrationType'
 
 const RegistrationSelection = () => {
