@@ -1,6 +1,6 @@
 'use client'
 
-import { useLoading } from '../services/context/LoadingContext'
+import { useLoading } from '../context/LoadingContext'
 
 const Spinner = () => {
     const { isLoading } = useLoading()

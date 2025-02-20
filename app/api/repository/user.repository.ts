@@ -38,15 +38,17 @@ export async function createUser(userData: { name: string, surname: string, emai
     });
 }
 
-//dont update it specify
-export async function updateUser(id: string, userData: { name?: string, surname?: string, email?: string, phoneNumber?: string, active?: boolean, roleId?: number | null }) {
+export async function updateUser(id: string, userData: { name?: string; surname?: string; email?: string; phoneNumber?: string; active?: boolean }) {
     return prisma.user.update({
         where: {
             id: parseInt(id),
         },
         data: {
-            ...userData,
-            roleId: userData.roleId ?? null, // Default to null 
+            name: userData.name,
+            surname: userData.surname,
+            email: userData.email,
+            phoneNumber: userData.phoneNumber,
+            active: userData.active
         },
     });
 }

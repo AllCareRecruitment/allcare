@@ -1,6 +1,7 @@
-"use client";
+"use client"
 import React, { useState } from "react";
-import { registerUser } from "@/app/services/userService"
+import { registerUser } from "@/app/(ui)/services/userService";
+import { useRegistration } from "@/app/(ui)/context/RegistrationContext"; // Import the useRegistration hook
 
 const ProfileForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const ProfileForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  const { registrationType } = useRegistration(); // Get registrationType from context
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -23,7 +26,10 @@ const ProfileForm: React.FC = () => {
     setMessage("");
 
     try {
-      await registerUser(formData); // ✅ Call service function
+      // Determine roleId based on registrationType
+      const roleId = registrationType === 'Employer' ? 11 : 22;
+      
+      await registerUser(formData, roleId); // Pass roleId to registerUser
       setMessage("Profile created successfully!");
       setFormData({ name: "", surname: "", email: "", phoneNumber: "" });
     } catch (error) {

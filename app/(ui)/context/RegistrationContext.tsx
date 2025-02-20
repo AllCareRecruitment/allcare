@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react'
-import { RegistrationType } from '../../models/RegistrationType'
+import { RegistrationType } from '../models/RegistrationType'
 
 type RegistrationTypeState = RegistrationType | null
 
