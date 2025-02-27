@@ -15,6 +15,14 @@
   --color-button-hover: #F5BABA;
   --color-button-text: #6B7165;
   --color-text-light: #FFFFFF;
+  --color-plans-bg: #E5DDD7;
+  --color-basic-plan-header: #849C9F59;
+  --color-basic-plan-body: #9CB5AA;
+  --color-pro-plan-header: #FFC7C98F;
+  --color-pro-plan-body: #D48486;
+  --color-ultimate-plan-header: #90896273;
+  --color-plan-get-started-button: #908962;
+  --color-plan-selection-bg: #EDE5DC
 }
 
 /* Dark Mode */
