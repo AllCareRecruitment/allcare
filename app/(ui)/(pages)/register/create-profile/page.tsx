@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { registerUser } from '@/app/(ui)/services/userService'
-import { useRegistration } from '@/app/(ui)/context/RegistrationContext' // Import the useRegistration hook
+import { useRegistration } from '@/app/(ui)/context/RegistrationContext'
 
 const ProfileForm: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const ProfileForm: React.FC = () => {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
 
-    const { registrationType } = useRegistration() // Get registrationType from context
+    const { registrationType } = useRegistration()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })

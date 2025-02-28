@@ -17,8 +17,7 @@ export async function getUserById(id: string) {
 }
 
 export async function getUserByEmail(email: string) {
-    return await userGetByEmail(email) || null 
-    
+    return await userGetByEmail(email) || null
 }
 
 export async function registerUser(userData: { 

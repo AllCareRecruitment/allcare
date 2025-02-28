@@ -1,12 +1,8 @@
 export default function PricingPage() {
     return (
         <div className="min-h-screen bg-selectPlanBackground flex flex-col items-center justify-center p-6">
-            {/* Container for header and cards to control alignment */}
             <div className="w-full max-w-5xl">
-                {/* Header with left alignment */}
                 <h1 className="text-3xl font-bold text-gray-700 mb-8 text-left">Find The Right Plan.</h1>
-
-                {/* Plan cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {plans.map((plan) =>
                         <div
