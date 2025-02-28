@@ -26,7 +26,7 @@ const ProfileForm: React.FC = () => {
         setMessage('')
 
         try {
-            // Determine roleId based on registrationType
+
             const roleId = registrationType === 'Employer' ? 11 : 22
       
             await registerUser(formData, roleId) // Pass roleId to registerUser
