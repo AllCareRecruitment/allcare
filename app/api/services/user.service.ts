@@ -32,8 +32,7 @@ export async function registerUser(userData: {
     const existingUser = await getUserByEmail(userData.email)
 
     if (existingUser) {
-        return { error: 'Email already in use' } 
-        
+        return { error: 'Email already in use' }
     }
 
     return await createUser(userData)
