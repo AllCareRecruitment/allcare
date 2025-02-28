@@ -17,7 +17,7 @@ export async function getUserById(id: string) {
 }
 
 export async function getUserByEmail(email: string) {
-    return await userGetByEmail(email) || null; 
+    return await userGetByEmail(email) || null 
     
 }
 
@@ -30,18 +30,20 @@ export async function registerUser(userData: {
     roleId?: number | null 
 }) {
     
-    const existingUser = await getUserByEmail(userData.email);
+    const existingUser = await getUserByEmail(userData.email)
 
     if (existingUser) {
-        return { error: "Email already in use" }; 
+        return { error: 'Email already in use' } 
         
     }
 
-    // If no existing user, proceed with creation
-    return await createUser(userData);
+    return await createUser(userData)
 }
 
-
-export async function updateUserDetails(id: string, userData: { name?: string, surname?: string, email?: string, phoneNumber?: string, active?: boolean, roleId?: number | null }) {
-    return updateUser(id, userData);
+export async function updateUserDetails(
+    id: string, userData: {
+        name?: string, surname?: string, email?: string, phoneNumber?: string, active?: boolean, roleId?: number | null
+    })
+{
+    return updateUser(id, userData)
 }

@@ -8,22 +8,19 @@ export async function registerUser(userData: {
     phoneNumber?: string;
   }, roleId: number) {
     try {
-        // Construct the payload
         const payload = {
             ...userData,
-            //roleId,
-            active: true, // Set active to true
+            roleId,
+            active: true,
         }
-
-        console.log('Payload being sent:', payload) // Debugging: Log the payload
 
         const response = await fetch('/api/user/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Basic ${credentials}`, // Add Basic Auth header
+                Authorization: `Basic ${credentials}`,
             },
-            body: JSON.stringify(payload), // Ensure payload is stringified
+            body: JSON.stringify(payload),
         })
 
         if (!response.ok) {
@@ -32,7 +29,6 @@ export async function registerUser(userData: {
 
         return await response.json()
     } catch (error) {
-        console.error('Error registering user:', error)
         throw error
     }
 }

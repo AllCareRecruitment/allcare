@@ -27,13 +27,17 @@ const ProfileForm: React.FC = () => {
 
         try {
 
-            const roleId = registrationType === 'Employer' ? 11 : 22
+            const roleId = registrationType === 'Employer' ? 2 : 1
       
-            await registerUser(formData, roleId) // Pass roleId to registerUser
+            await registerUser(formData, roleId)
             setMessage('Profile created successfully!')
             setFormData({ name: '', surname: '', email: '', phoneNumber: '' })
         } catch (error) {
-            setMessage('Error: Could not register user.')
+            if (error instanceof Error) {
+                setMessage(`Error: ${error.message}`)
+            } else {
+                setMessage('Error: Could not register user. Please try again later.')
+            }
         } finally {
             setLoading(false)
         }
