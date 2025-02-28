@@ -19,6 +19,8 @@ export default {
                 ultimatePlanBodyBrown: 'var(--color-employers-bg)',
                 planGetStartedButton: 'var(--color-plan-get-started-button)',
                 selectPlanBackground: 'var(--color-plan-selection-bg)',
+                contactUsFormBackground: 'var(--color-contact-us-form-bg)',
+                contactUsFormSubmitButton: 'var(--color-contact-us-submit-button-bg)',
             },
         },
     },

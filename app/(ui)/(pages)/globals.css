@@ -22,7 +22,10 @@
   --color-pro-plan-body: #D48486;
   --color-ultimate-plan-header: #90896273;
   --color-plan-get-started-button: #908962;
-  --color-plan-selection-bg: #EDE5DC
+  --color-plan-selection-bg: #EDE5DC;
+  --color-contact-us-form-bg: #D3CBA3;
+  --color-contact-us-submit-button-bg: #908962;
+
 }
 
 /* Dark Mode */
