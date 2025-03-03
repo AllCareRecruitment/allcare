@@ -22,7 +22,9 @@
   --color-pro-plan-body: #D48486;
   --color-ultimate-plan-header: #90896273;
   --color-plan-get-started-button: #908962;
-  --color-plan-selection-bg: #EDE5DC
+  --color-plan-selection-bg: #EDE5DC;
+  --color-accent: #D48486;
+  --color-secondary: #9CB5A9;
 }
 
 /* Dark Mode */
@@ -41,6 +43,12 @@ body {
 }
 
 /* Utility Classes */
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
 .bg-jobseekers {
   background-color: var(--color-jobseekers-bg);
 }
