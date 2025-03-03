@@ -7,21 +7,14 @@ export async function GET(req: NextRequest, context: { params: Promise<{ roleId:
         const { roleId } = await context.params
         const parsedRoleId = parseInt(roleId)
 
-        if (isNaN(parsedRoleId)) {
-            return NextResponse.json(
-                { error: 'Invalid Role ID' },
-                { status: 400 }
-            )
-        }
-
         const packages = await fetchPackagesForRole(parsedRoleId)
-        if (packages) {
+        if (packages.length) {
             return NextResponse.json({ packages }, { status: 200 })
         }
 
         return NextResponse.json(
             { message: 'No active packages found' },
-            { status: 404 }
+            { status: 200 }
         )
     } catch (errors) {
         return NextResponse.json(
