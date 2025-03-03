@@ -3,7 +3,11 @@
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react'
 import { RegistrationType } from '../models/RegistrationType'
 
-type RegistrationTypeState = RegistrationType | null
+type RegistrationTypeState = {
+    type: RegistrationType | null;
+    roleId: number | null;
+};
+
 
 interface RegistrationContextType {
     registrationType: RegistrationTypeState
@@ -13,14 +17,18 @@ interface RegistrationContextType {
 const RegistrationContext = createContext<RegistrationContextType | undefined>(undefined)
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
-    const [registrationType, setRegistrationType] = useState<RegistrationTypeState>(null)
+    const [registrationType, setRegistrationType] = useState<RegistrationTypeState>({
+        type: null,
+        roleId: null
+    });
 
     return (
         <RegistrationContext.Provider value={{ registrationType, setRegistrationType }}>
             {children}
         </RegistrationContext.Provider>
-    )
-}
+    );
+};
+
 
 export const useRegistration = () => {
     const context = useContext(RegistrationContext)
