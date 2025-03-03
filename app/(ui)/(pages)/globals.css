@@ -15,6 +15,8 @@
   --color-button-hover: #F5BABA;
   --color-button-text: #6B7165;
   --color-text-light: #FFFFFF;
+  --color-accent: #D48486;
+  --color-secondary: #9CB5A9;
 }
 
 /* Dark Mode */
@@ -35,6 +37,13 @@ body {
 /* Utility Classes */
 .bg-jobseekers {
   background-color: var(--color-jobseekers-bg);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
 }
 .bg-employers {
   background-color: var(--color-employers-bg);
