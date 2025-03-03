@@ -124,7 +124,7 @@ CREATE TABLE "SubscriptionPlan" (
     "price" DECIMAL(10, 2) NOT NULL,
     "durationInMonths" INT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT TRUE,
-    "roleId" INT NOT NULL,  -- New column for role ID, now required
+    "roleId" INT NOT NULL,
     FOREIGN KEY ("roleId") REFERENCES "Role"("id")
 );
 
