@@ -28,7 +28,7 @@ const ProfileForm: React.FC = () => {
         try {
 
             const roleId = registrationType === 'Employer' ? 2 : 1
-      
+
             await registerUser(formData, roleId)
             setMessage('Profile created successfully!')
             setFormData({ name: '', surname: '', email: '', phoneNumber: '' })
@@ -44,7 +44,7 @@ const ProfileForm: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#c4bb94]">
+        <div className="flex flex-col flex-1 items-center justify-center bg-[#c4bb94]">
             <div className="bg-[#c4bb94] p-10 rounded-lg shadow-lg w-96">
                 <h2 className="text-3xl font-bold text-[#6a5d3c] text-center mb-6">
           Create Your Profile.
@@ -111,7 +111,7 @@ const ProfileForm: React.FC = () => {
                     >
                         {loading ? 'Submitting...' : 'Submit'} <span>&rarr;</span>
                     </button>
-                    {message && 
+                    {message &&
             <p className="text-center mt-2 text-sm font-semibold text-[#6a5d3c]">
                 {message}
             </p>

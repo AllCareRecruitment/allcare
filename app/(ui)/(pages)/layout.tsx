@@ -45,9 +45,14 @@ export default function PagesLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <Navbar menuItems={menu} />
-            {children}
+        <div className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}>
+            <Navbar menuItems={menu}/>
+            <div className="bg-accent h-16 flex items-center">
+                <h1 className="text-white p-5">Your world in our hands</h1>
+            </div>
+            <div className="flex-1 flex flex-col">
+                {children}
+            </div>
         </div>
     )
 }

@@ -2,9 +2,6 @@
 export default function Home() {
     return (
         <div>
-            <div className="bg-accent p-5">
-                <h1 className="text-white">Your world in our hands</h1>
-            </div>
             <div className="bg-secondary p-5 md:p-20 grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
                     <p>img here</p>

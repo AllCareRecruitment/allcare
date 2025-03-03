@@ -43,6 +43,12 @@ body {
 }
 
 /* Utility Classes */
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
 .bg-jobseekers {
   background-color: var(--color-jobseekers-bg);
 }
