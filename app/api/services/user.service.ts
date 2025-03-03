@@ -1,4 +1,4 @@
-import { allUsersGet, userGet } from '@/app/api/repository/user.repository'
+import { allUsersGet, userGet, userGetByEmail, createUser, updateUser } from '@/app/api/repository/user.repository'
 
 export async function getAllUsers() {
     const data = await allUsersGet()
@@ -16,3 +16,32 @@ export async function getUserById(id: string) {
     return data
 }
 
+export async function getUserByEmail(email: string) {
+    return await userGetByEmail(email) || null
+}
+
+export async function registerUser(userData: { 
+    name: string, 
+    surname: string, 
+    email: string, 
+    phoneNumber?: string, 
+    active: boolean, 
+    roleId?: number | null 
+}) {
+    
+    const existingUser = await getUserByEmail(userData.email)
+
+    if (existingUser) {
+        return { error: 'Email already in use' }
+    }
+
+    return await createUser(userData)
+}
+
+export async function updateUserDetails(
+    id: string, userData: {
+        name?: string, surname?: string, email?: string, phoneNumber?: string, active?: boolean, roleId?: number | null
+    })
+{
+    return updateUser(id, userData)
+}
