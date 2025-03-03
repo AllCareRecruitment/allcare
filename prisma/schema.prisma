@@ -128,11 +128,12 @@ model Payment {
 }
 
 model Role {
-  id          Int     @id @default(autoincrement())
-  name        String  @db.VarChar(255)
-  description String? @db.VarChar(500)
-  active      Boolean @default(true)
-  User        User[]
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(255)
+  description      String?            @db.VarChar(500)
+  active           Boolean            @default(true)
+  SubscriptionPlan SubscriptionPlan[]
+  User             User[]
 }
 
 model Skills {
@@ -163,7 +164,9 @@ model SubscriptionPlan {
   price            Decimal        @db.Decimal(10, 2)
   durationInMonths Int
   active           Boolean        @default(true)
+  roleId           Int
   Subscription     Subscription[]
+  Role             Role           @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_role")
 }
 
 model User {
