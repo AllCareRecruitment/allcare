@@ -1,6 +1,5 @@
 import React from 'react'
 import { MenuItems } from '@/app/(ui)/models/menu.model'
-import Image from 'next/image'
 
 interface HeaderProps {
     menuItems: MenuItems[];
