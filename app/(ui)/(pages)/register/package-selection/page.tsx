@@ -1,12 +1,64 @@
+'use client'
+
+import { getPackagesByRoleId } from '@/app/(ui)/services/packagesService'
+import { useEffect, useState } from 'react'
+
+interface Package {
+    planName: string;
+    description: string;
+    price: string;
+}
+
 export default function PricingPage() {
+    const [packages, setPackages] = useState<Package[]>([])
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getPackagesByRoleId(2)
+                setPackages(response.packages) // Set the packages from the API response
+            } catch (error) {
+                console.error('Error fetching packages:', error)
+            }
+        })()
+    }, [])
+
+    // Static styling data
+    const plans = [
+        {
+            titleBgColor: 'bg-basicPlanHeaderBlue',
+            bgColor: 'bg-basicPlanBodyBlue',
+        },
+        {
+            titleBgColor: 'bg-proPlanHeaderPink',
+            bgColor: 'bg-proPlanBodyPink',
+        },
+        {
+            titleBgColor: 'bg-ultimatePlanHeaderBrown',
+            bgColor: 'bg-ultimatePlanBodyBrown',
+        },
+    ]
+
+    // Combine API data with static styling data
+    const dynamicPlans = packages.map((pkg, index) => {
+        const planStyle = plans[index % plans.length] // Cycle through static plans
+        return {
+            name: pkg.planName,
+            description: pkg.description,
+            price: pkg.price,
+            titleBgColor: planStyle.titleBgColor,
+            bgColor: planStyle.bgColor,
+        }
+    })
+
     return (
         <div className="min-h-screen bg-selectPlanBackground flex flex-col items-center justify-center p-6">
             <div className="w-full max-w-5xl">
                 <h1 className="text-3xl font-bold text-gray-700 mb-8 text-left">Find The Right Plan.</h1>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {plans.map((plan) =>
+                    {dynamicPlans.map((plan, index) => 
                         <div
-                            key={plan.name}
+                            key={index}
                             className={`rounded-lg shadow-lg flex flex-col 
                             items-center ${plan.bgColor} overflow-hidden`}
                         >
@@ -16,8 +68,8 @@ export default function PricingPage() {
 
                             <div className="flex flex-col flex-grow w-full items-center p-6">
                                 <ul className="mb-6">
-                                    {plan.features.map((feature, index) =>
-                                        <li key={index} className="text-white flex items-center gap-2 mb-2">
+                                    {plan.description.split(', ').map((feature, idx) => 
+                                        <li key={idx} className="text-white flex items-center gap-2 mb-2">
                                             <span className="text-lg">✔</span> {feature}
                                         </li>
                                     )}
@@ -37,24 +89,3 @@ export default function PricingPage() {
         </div>
     )
 }
-
-const plans = [
-    {
-        name: 'BASIC',
-        titleBgColor: 'bg-basicPlanHeaderBlue',
-        bgColor: 'bg-basicPlanBodyBlue',
-        features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
-    },
-    {
-        name: 'PRO',
-        titleBgColor: 'bg-proPlanHeaderPink',
-        bgColor: 'bg-proPlanBodyPink',
-        features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
-    },
-    {
-        name: 'ULTIMATE',
-        titleBgColor: 'bg-ultimatePlanHeaderBrown',
-        bgColor: 'bg-ultimatePlanBodyBrown',
-        features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
-    },
-]
