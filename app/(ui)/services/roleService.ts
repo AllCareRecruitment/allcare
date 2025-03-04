@@ -5,7 +5,7 @@ export interface Role {
     active: boolean;
 }
 
-const credentials = btoa('dean:dean');
+const credentials = btoa('dean:dean')
 
 export async function getAllRoles(): Promise<Role[]> {
     try {
@@ -15,15 +15,15 @@ export async function getAllRoles(): Promise<Role[]> {
                 'Content-Type': 'application/json',
                 Authorization: `Basic ${credentials}`,
             },
-        });
+        })
 
         if (!response.ok) {
-            throw new Error(`Failed to fetch roles: ${response.statusText}`);
+            throw new Error(`Failed to fetch roles: ${response.statusText}`)
         }
 
-        const data = await response.json();
-        return data.roles;
+        const data = await response.json()
+        return data.roles
     } catch (error) {
-        throw error;
+        throw error
     }
 }
