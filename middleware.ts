@@ -20,5 +20,5 @@ function composeMiddleware(middlewares: Middleware[]) {
 export const middleware = composeMiddleware([authMiddleware, loggingMiddleware])
 
 export const config = {
-    matcher: ['/api/:path*'],
+    matcher: ['/api/user/:path*', '/api/users/:path*'],
 }
