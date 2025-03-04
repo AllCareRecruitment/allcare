@@ -66,7 +66,7 @@ export default function PricingPage() {
     ]
 
     const dynamicPlans = packages.map((pkg, index) => {
-        const planStyle = plans[index % plans.length] // Cycle through static plans
+        const planStyle = plans[index % plans.length]
         return {
             name: pkg.planName,
             description: pkg.description,
@@ -80,7 +80,7 @@ export default function PricingPage() {
         if (scrollContainerRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
             setShowLeftArrow(scrollLeft > 0)
-            setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10) // Small buffer
+            setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10)
         }
     }
 
@@ -121,7 +121,7 @@ export default function PricingPage() {
                     {error}
                 </div>
             }
-            {isLocalLoading ? null : // If loading, render nothing inside the outer div
+            {isLocalLoading ? null :
                 <div className="w-full max-w-5xl">
                     <div className={dynamicPlans.length === 1 ? 'text-center' : 'text-left'}>
                         <h1 className="text-3xl font-bold text-gray-700 mb-8">Find The Right Plan.</h1>
