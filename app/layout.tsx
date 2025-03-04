@@ -1,20 +1,27 @@
-
 import React from 'react'
 import { LoadingProvider } from './(ui)/context/LoadingContext'
 import Spinner from './(ui)/components/spinner'
 import { RegistrationProvider } from './(ui)/context/RegistrationContext'
-export default function RootLayout({
-    children,
-}: Readonly<{
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/(routes)/auth/[...nextauth]/route'
+import SessionWrapper from '@/app/(ui)/(pages)/sessionWrapper'
+
+type LayoutProps = {
     children: React.ReactNode;
-}>) {
+};
+
+export default async function RootLayout({ children }: LayoutProps) {
+    const session = await getServerSession(authOptions)
+
     return (
         <html lang="en">
             <body>
                 <LoadingProvider>
                     <RegistrationProvider>
                         <Spinner />
-                        {children}
+                        <SessionWrapper session={session}>
+                            {children}
+                        </SessionWrapper>
                     </RegistrationProvider>
                 </LoadingProvider>
             </body>
