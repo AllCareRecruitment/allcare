@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState } from 'react'
 import { registerUser } from '@/app/(ui)/services/userService'
 import { useRegistration } from '@/app/(ui)/context/RegistrationContext'
@@ -14,8 +15,9 @@ const ProfileForm: React.FC = () => {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
 
+    // Get registrationType and roleId from context
     const { registrationType } = useRegistration()
-
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
@@ -26,10 +28,12 @@ const ProfileForm: React.FC = () => {
         setMessage('')
 
         try {
+            // Ensure roleId is available before proceeding
+            if (!registrationType.roleId) {
+                throw new Error('Role ID is missing. Please select a registration type.')
+            }
 
-            const roleId = registrationType === 'Employer' ? 2 : 1
-
-            await registerUser(formData, roleId)
+            await registerUser(formData, registrationType.roleId)
             setMessage('Profile created successfully!')
             setFormData({ name: '', surname: '', email: '', phoneNumber: '' })
         } catch (error) {
@@ -44,10 +48,10 @@ const ProfileForm: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col flex-1 items-center justify-center bg-[#c4bb94]">
+        <div className="min-h-screen flex items-center justify-center bg-[#c4bb94]">
             <div className="bg-[#c4bb94] p-10 rounded-lg shadow-lg w-96">
                 <h2 className="text-3xl font-bold text-[#6a5d3c] text-center mb-6">
-          Create Your Profile.
+                    Create Your Profile.
                 </h2>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
@@ -111,10 +115,10 @@ const ProfileForm: React.FC = () => {
                     >
                         {loading ? 'Submitting...' : 'Submit'} <span>&rarr;</span>
                     </button>
-                    {message &&
-            <p className="text-center mt-2 text-sm font-semibold text-[#6a5d3c]">
-                {message}
-            </p>
+                    {message && 
+                        <p className="text-center mt-2 text-sm font-semibold text-[#6a5d3c]">
+                            {message}
+                        </p>
                     }
                 </form>
             </div>
