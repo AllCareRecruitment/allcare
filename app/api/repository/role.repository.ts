@@ -11,8 +11,7 @@ export const RoleRepository = {
 
             return role ? role.id : null
         } catch (error) {
-            console.error('Error fetching role ID:', error)
-            throw new Error('Could not fetch role ID')
+         throw new Error('Could not fetch role ID')
         }
     },
 
@@ -23,7 +22,6 @@ export const RoleRepository = {
             })
             return roles.map((role) => role.id)
         } catch (error) {
-            console.error('Error fetching all role IDs:', error)
             throw new Error('Could not fetch all role IDs')
         }
     },
@@ -32,7 +30,6 @@ export const RoleRepository = {
         try {
             return await prisma.role.findMany()
         } catch (error) {
-            console.error('Error fetching all roles:', error)
             throw new Error('Could not fetch all roles')
         }
     },

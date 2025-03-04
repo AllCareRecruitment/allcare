@@ -17,7 +17,7 @@ const RegistrationSelection = () => {
                 const fetchedRoles = await getAllRoles()
                 setRoles(fetchedRoles)
             } catch (error) {
-                console.error('Error fetching roles:', error)
+                return error
             }
         }
         fetchRoles()
@@ -37,9 +37,7 @@ const RegistrationSelection = () => {
                 roleId,
             }))
             router.push('/register/create-profile')
-        } else {
-            console.error('Role ID not found for', type)
-        }
+        } 
     }
 
     return (

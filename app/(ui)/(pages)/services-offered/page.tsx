@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Image from 'next/image'
 export default function JobListings() {
     const jobCards = [
         {
@@ -45,8 +45,9 @@ export default function JobListings() {
                     <div className="flex flex-col md:flex-row items-start gap-12">
                         {/* Left column with image and button */}
                         <div className="md:w-1/3 relative">
-                            <img
-                                src="https://images.squarespace-cdn.com/content/v1/6047f7163de62945d915934c/1615407451100-WNAZMQ0PAD1ONA52IGAS/junko-nakase-zX-B7rHOSm4-unsplash.jpg"
+                            <Image
+                                src="https://images.squarespace-cdn.com/content/v1/6047f7163de62945d915934c/1615407
+                                // 451100-WNAZMQ0PAD1ONA52IGAS/junko-nakase-zX-B7rHOSm4-unsplash.jpg"
                                 alt="Cleaning Tools"
                                 className="w-full h-auto object-cover"
                             />
