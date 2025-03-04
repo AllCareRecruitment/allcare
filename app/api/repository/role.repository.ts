@@ -8,10 +8,9 @@ export const RoleRepository = {
                 where: { name: registrationType },
                 select: { id: true },
             })
-
             return role ? role.id : null
         } catch (error) {
-         throw new Error('Could not fetch role ID')
+            throw new Error(`Could not fetch role ID: ${(error as Error).message}`)
         }
     },
 
@@ -22,7 +21,7 @@ export const RoleRepository = {
             })
             return roles.map((role) => role.id)
         } catch (error) {
-            throw new Error('Could not fetch all role IDs')
+            throw new Error(`Could not fetch all role IDs: ${(error as Error).message}`)
         }
     },
 
@@ -30,7 +29,7 @@ export const RoleRepository = {
         try {
             return await prisma.role.findMany()
         } catch (error) {
-            throw new Error('Could not fetch all roles')
+            throw new Error(`Could not fetch all roles: ${(error as Error).message}`)
         }
     },
 }
