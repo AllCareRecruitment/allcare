@@ -44,7 +44,7 @@ const RegistrationSelection = () => {
     
 
     return (
-        <div className="flex flex-col md:flex-row h-screen">
+        <div className="flex flex-col md:flex-row flex-1">
             <div className="flex-1 flex flex-col justify-center
                 items-center bg-jobseekers text-light p-10 w-full md:w-1/2">
                 <h2 className="text-3xl font-bold">FOR JOB SEEKERS</h2>

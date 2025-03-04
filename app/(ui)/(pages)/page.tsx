@@ -1,13 +1,19 @@
 
 export default function Home() {
     return (
-        <div className="grid grid-rows-[20px_1fr_20px]
-            items-center justify-items-center
-            min-h-screen p-8 pb-20 gap-16 sm:p-20
-            font-[family-name:var(--font-geist-sans)]"
-        >
-            <h1>All Care Recruitment</h1>
-            <p>This is in prod</p>
+        <div>
+            <div className="bg-secondary p-5 md:p-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <p>img here</p>
+                </div>
+                <div>
+                    <h1 className="text-4xl md:text-6xl font-bold">WELCOME TO<br />ALL CARE<br />RECRUITMENT</h1>
+                    <h2 className="text-xl md:text-2xl">Streamlined and effective recruitment<br />
+                        solutions for the caregiver industry.
+                    </h2>
+                </div>
+            </div>
         </div>
+
     )
 }
