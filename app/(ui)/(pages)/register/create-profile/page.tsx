@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { registerUser } from '@/app/(ui)/services/userService'
 import { useRegistration } from '@/app/(ui)/context/RegistrationContext'
+import { useRouter } from 'next/navigation'
 
 const ProfileForm: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -14,8 +15,7 @@ const ProfileForm: React.FC = () => {
 
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
-
-    // Get registrationType and roleId from context
+    const router = useRouter()
     const { registrationType } = useRegistration()
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +36,7 @@ const ProfileForm: React.FC = () => {
             await registerUser(formData, registrationType.roleId)
             setMessage('Profile created successfully!')
             setFormData({ name: '', surname: '', email: '', phoneNumber: '' })
+            router.push('/register/package-selection')
         } catch (error) {
             if (error instanceof Error) {
                 setMessage(`Error: ${error.message}`)
