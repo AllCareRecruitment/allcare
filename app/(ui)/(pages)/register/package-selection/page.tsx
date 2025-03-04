@@ -4,6 +4,7 @@ import { getPackagesByRoleId } from '@/app/(ui)/services/packagesService'
 import { useEffect, useState, useRef } from 'react'
 import styles from './styles.module.css'
 import { useLoading } from '@/app/(ui)/context/LoadingContext'
+import { useRegistration } from '@/app/(ui)/context/RegistrationContext'
 
 interface Package {
     planName: string;
@@ -18,6 +19,10 @@ export default function PricingPage() {
     const [showRightArrow, setShowRightArrow] = useState(false)
     const { setLoading } = useLoading()
     const [isLocalLoading, setIsLocalLoading] = useState(true)
+    const { registrationType } = useRegistration()
+    const [error, setError] = useState<string | null>(null)
+
+    const roleId = registrationType.roleId
 
     useEffect(() => {
         (async () => {
@@ -25,16 +30,19 @@ export default function PricingPage() {
             setIsLocalLoading(true)
 
             try {
-                const response = await getPackagesByRoleId(2)
+                if (!roleId) throw new Error('Role ID is missing. Please select a registration type.')
+                const response = await getPackagesByRoleId(roleId)
                 setPackages(response.packages)
             } catch (error) {
-                return error
+                if (error instanceof Error) {
+                    setError('Failed to fetch packages. Please try again later.')
+                }
             } finally {
                 setLoading(false)
                 setIsLocalLoading(false)
             }
         })()
-    }, [setLoading])
+    }, [roleId,setLoading])
 
     useEffect(() => {
         if (packages.length > 3) {
@@ -108,6 +116,11 @@ export default function PricingPage() {
 
     return (
         <div className="min-h-screen bg-selectPlanBackground flex flex-col items-center justify-center p-6">
+            {error &&
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    {error}
+                </div>
+            }
             {isLocalLoading ? null : // If loading, render nothing inside the outer div
                 <div className="w-full max-w-5xl">
                     <div className={dynamicPlans.length === 1 ? 'text-center' : 'text-left'}>
