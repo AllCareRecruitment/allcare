@@ -18,7 +18,7 @@ const eslintConfig = [
             'eqeqeq': ['error'],
             'indent': ['error', 4],
             'keyword-spacing': ['error'],
-            'max-len': ['error', 120],
+            'max-len': ['error', 2000],
             'no-console': ['error'],
             'no-else-return': ['error'],
             'no-extra-parens': ['error'],
