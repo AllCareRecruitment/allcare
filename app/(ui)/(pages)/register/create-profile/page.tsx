@@ -49,8 +49,8 @@ const ProfileForm: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#c4bb94]">
-            <div className="bg-[#c4bb94] p-10 rounded-lg shadow-lg w-96">
+        <div className="min-h-screen flex items-center justify-center bg-[#d6d4ad]">
+            <div className="bg-[#d6d4ad] p-10 rounded-lg shadow-lg w-96">
                 <h2 className="text-3xl font-bold text-[#6a5d3c] text-center mb-6">
                     Create Your Profile.
                 </h2>
