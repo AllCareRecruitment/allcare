@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 
 export default function Home() {
     return (
@@ -7,7 +6,7 @@ export default function Home() {
             {/* Hero Section */}
             <div className="bg-[#a8beaf] p-5 md:p-10 lg:p-20 grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative">
-                    <Image
+                    <img
                         src="https://image-prod.iol.co.za/16x9/800/The-fast-pace-of-new-technology-has-brought-about-an-always-on-approach-when-it-comes-to-time-spent-working-behind-our-screens?source=https://iol-prod.appspot.com/image/d936c60d9f60df36867b9dde9ec5e6fda271d48b/2000&operation=CROP&offset=0x104&resize=2000x1125"
                         alt="Person working on laptop"
                         className="w-full h-auto object-cover"
@@ -48,7 +47,7 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="relative">
-                    <Image
+                    <img
                         src="https://www.tourradar.com/days-to-come/wp-content/uploads/2018/07/dan-gold-544435-unsplash-min.jpg"
                         alt="Warm knitted textiles"
                         className="w-full h-full object-cover"

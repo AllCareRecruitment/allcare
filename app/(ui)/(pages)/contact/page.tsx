@@ -1,11 +1,10 @@
-import Image from 'next/image'
 
 export default function Contact() {
     return (
         <div className="min-h-screen bg-[#dcd7c9] font-[family-name:var(--font-geist-sans)]">
             {/* Top image (leaf background) */}
             <div className="w-full h-[300px] sm:h-[400px] relative">
-                <Image
+                <img
                     src="https://wallpapercrafter.com/sizes/1920x1080/255450-cozy-leaves-autumn-and-brown-leaves-hd.jpg"
                     alt="Leaves"
                     className="w-full h-full object-cover"
