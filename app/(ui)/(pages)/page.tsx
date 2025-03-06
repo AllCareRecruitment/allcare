@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export default function Home() {
     return (
@@ -6,9 +7,9 @@ export default function Home() {
             {/* Hero Section */}
             <div className="bg-[#a8beaf] p-5 md:p-10 lg:p-20 grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative">
-                    <img 
-                        src="https://image-prod.iol.co.za/16x9/800/The-fast-pace-of-new-technology-has-brought-about-an-always-on-approach-when-it-comes-to-time-spent-working-behind-our-screens?source=https://iol-prod.appspot.com/image/d936c60d9f60df36867b9dde9ec5e6fda271d48b/2000&operation=CROP&offset=0x104&resize=2000x1125" 
-                        alt="Person working on laptop" 
+                    <Image
+                        src="https://image-prod.iol.co.za/16x9/800/The-fast-pace-of-new-technology-has-brought-about-an-always-on-approach-when-it-comes-to-time-spent-working-behind-our-screens?source=https://iol-prod.appspot.com/image/d936c60d9f60df36867b9dde9ec5e6fda271d48b/2000&operation=CROP&offset=0x104&resize=2000x1125"
+                        alt="Person working on laptop"
                         className="w-full h-auto object-cover"
                     />
                     <div className="absolute bottom-0 left-0 bg-[#f7c8c8] px-6 py-3 flex items-center">
@@ -47,9 +48,9 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="relative">
-                    <img 
-                        src="https://www.tourradar.com/days-to-come/wp-content/uploads/2018/07/dan-gold-544435-unsplash-min.jpg" 
-                        alt="Warm knitted textiles" 
+                    <Image
+                        src="https://www.tourradar.com/days-to-come/wp-content/uploads/2018/07/dan-gold-544435-unsplash-min.jpg"
+                        alt="Warm knitted textiles"
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-10 right-10 bg-[#a8beaf] px-6 py-3 flex items-center">
@@ -79,9 +80,9 @@ export default function Home() {
             {/* Services Section */}
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="relative bg-[#a09570]">
-                    <img 
-                        src="https://i0.wp.com/mommuseum.org/wp-content/uploads/2020/12/jan-kopriva-77la8of1f9g-unsplash.jpg?resize=1200,1200&ssl=1&w=640" 
-                        alt="Cleaning supplies" 
+                    <img
+                        src="https://i0.wp.com/mommuseum.org/wp-content/uploads/2020/12/jan-kopriva-77la8of1f9g-unsplash.jpg?resize=1200,1200&ssl=1&w=640"
+                        alt="Cleaning supplies"
                         className="w-full h-auto object-cover opacity-80"
                     />
                     <div className="absolute bottom-8 left-8 bg-[#a8beaf] px-6 py-3 flex items-center">

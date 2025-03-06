@@ -1,15 +1,16 @@
+import Image from 'next/image'
+
 export default function Contact() {
     return (
         <div className="min-h-screen bg-[#dcd7c9] font-[family-name:var(--font-geist-sans)]">
             {/* Top image (leaf background) */}
             <div className="w-full h-[300px] sm:h-[400px] relative">
-                <img
+                <Image
                     src="https://wallpapercrafter.com/sizes/1920x1080/255450-cozy-leaves-autumn-and-brown-leaves-hd.jpg"
                     alt="Leaves"
                     className="w-full h-full object-cover"
                 />
             </div>
-
             {/* Contact section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 px-8 py-12 sm:px-20 sm:py-20">
                 {/* Left side text */}
@@ -21,8 +22,8 @@ export default function Contact() {
             Looking For A New Opportunity?
                     </h3>
                     <p className="leading-relaxed text-[#333]">
-            Lorem ipsum dolor sit amet consectetur. Torto sed libero hendrerit dignissim 
-            eget vitae sapien. Faucibus vulputate dignissim magnis odio sagittis malesuada 
+            Lorem ipsum dolor sit amet consectetur. Torto sed libero hendrerit dignissim
+            eget vitae sapien. Faucibus vulputate dignissim magnis odio sagittis malesuada
             enim ac elit placerat integer vulputate nascetur.
                     </p>
                 </div>
