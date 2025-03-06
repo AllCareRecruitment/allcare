@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { registerUser } from '@/app/(ui)/services/userService'
+import { registerUser } from '@/app/api/services/user.service'
 import { useRegistration } from '@/app/(ui)/context/RegistrationContext'
 import { useRouter } from 'next/navigation'
 
